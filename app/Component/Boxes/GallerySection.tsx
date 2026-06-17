@@ -16,7 +16,8 @@ export default function GallerySection() {
   return (
     <section className="relative border-b border-[#f2e5c8] w-full bg-[#FCFAF5] py-16 md:py-20 flex flex-col items-center overflow-hidden">
       {/* Bulletproof CSS Marquee Animation */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); } 
@@ -36,23 +37,23 @@ export default function GallerySection() {
 
       {/* Infinite Scroll Container */}
       <div className="relative w-full flex">
-        
+
         {/* The Track: Holds both sets and animates them */}
         <div className="flex w-max animate-scroll hover:cursor-pointer">
-          
+
           {/* --- SET 1: The original 6 images --- */}
           <div className="flex gap-4 px-2">
             {galleryImages.map((src, index) => (
-              <div 
-                key={`set1-${index}`} 
-                className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-xl overflow-hidden shrink-0 shadow-sm"
+              <div
+                key={`set1-${index}`}
+                className="relative w-64 h-48 md:w-64 md:h-48 lg:w-72 lg:h-64 rounded-xl overflow-hidden shrink-0 shadow-sm"
               >
                 <Image
                   src={src}
                   alt={`Gallery image ${index + 1}`}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
+
                 />
               </div>
             ))}
@@ -61,9 +62,10 @@ export default function GallerySection() {
           {/* --- SET 2: The clone (This ensures Image 1 follows Image 6 seamlessly) --- */}
           <div className="flex gap-4 px-2" aria-hidden="true">
             {galleryImages.map((src, index) => (
-              <div 
-                key={`set2-${index}`} 
-                className="relative w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-xl overflow-hidden shrink-0 shadow-sm"
+              <div
+                key={`set2-${index}`}
+                className="relative w-64 h-48 md:w-64 md:h-48 lg:w-72 lg:h-64 rounded-xl overflow-hidden shrink-0 shadow-sm"
+
               >
                 <Image
                   src={src}
