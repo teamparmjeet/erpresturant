@@ -104,9 +104,9 @@ export default function Herobanner() {
       {/* Background Image Setup */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')" }}
+        style={{ backgroundImage: "url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAHJO1v2ZdQhOf8JYfR1sV9OueXoNEEX5-0nHxUxbGF6EPiYDHH8MZBD2TurcsKnupIYVnoY4WiXnqJJ7BDtIW2z2YO5cw72YtVarnVoUF32gVSGY1uJh974LLB9Shr6QhCFVDQ=s1360-w1360-h1020-rw')" }}
       >
-        <div className="absolute inset-0 bg-linear-to-r from-white/85 via-white/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-white/85 via-white/10 to-transparent"></div>
       </div>
 
       {/* Main Content Container */}
