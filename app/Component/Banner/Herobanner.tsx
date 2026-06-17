@@ -13,11 +13,12 @@ import {
   GlassWater,
   Calendar,
   Users,
-  DoorOpen
+  DoorOpen,
+  X // <-- Added X icon for the modal close button
 } from 'lucide-react';
 import Link from 'next/link';
+
 // --- Custom Number Input Component ---
-// Handles typing numbers and enforces minimums automatically on blur
 interface NumberInputProps {
   label: string;
   value: number | string;
@@ -66,18 +67,18 @@ CustomDateInput.displayName = 'CustomDateInput';
 
 // --- Main Component ---
 export default function Herobanner() {
-  // Get today's date for validation
   const today = new Date();
   const tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  // State setup
   const [checkIn, setCheckIn] = useState<Date | null>(today);
   const [checkOut, setCheckOut] = useState<Date | null>(tomorrow);
   const [guests, setGuests] = useState<number | string>(2);
   const [rooms, setRooms] = useState<number | string>(1);
+  
+  // --- New State for Mobile Modal ---
+  const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
 
-  // Handlers for Inputs to enforce minimum values of 1
   const handleGuestsBlur = () => {
     const val = Number(guests);
     if (isNaN(val) || val < 1) setGuests(1);
@@ -89,6 +90,7 @@ export default function Herobanner() {
   };
 
   const handleCheckAvailability = () => {
+    setIsMobileModalOpen(false); // Close modal on submit if open
     alert(
       `Searching Availability:\n\n` +
       `Check In: ${checkIn ? format(checkIn, 'dd MMM, yyyy') : 'Not selected'}\n` +
@@ -104,13 +106,13 @@ export default function Herobanner() {
       {/* Background Image Setup */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAHJO1v2ZdQhOf8JYfR1sV9OueXoNEEX5-0nHxUxbGF6EPiYDHH8MZBD2TurcsKnupIYVnoY4WiXnqJJ7BDtIW2z2YO5cw72YtVarnVoUF32gVSGY1uJh974LLB9Shr6QhCFVDQ=s1360-w1360-h1020-rw')" }}
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')" }}
       >
         <div className="absolute inset-0 bg-linear-to-r from-white/85 via-white/10 to-transparent"></div>
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  pb-40 lg:pb-32 flex flex-col lg:flex-row justify-between items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8   lg:pb-32 flex flex-col lg:flex-row justify-between items-center">
 
         {/* Left Column: Text & CTAs */}
         <div className="w-full lg:w-1/2 flex flex-col items-start space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
@@ -124,7 +126,7 @@ export default function Herobanner() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 w-full sm:w-auto">
-            <Link href="/Rooms" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0f2c23] text-white px-8 py-4 rounded-full hover:bg-[#1a4034] transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 group">
+            <Link href="/Rooms" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#b89565] text-white px-8 py-4 rounded-full hover:bg-[#1a4034] transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 group">
               <span className="font-semibold text-sm tracking-wide">Explore Rooms</span>
               <div className="border border-white/30 rounded-full p-1 group-hover:bg-white/10 transition-colors">
                 <ArrowRight size={14} />
@@ -167,12 +169,13 @@ export default function Herobanner() {
         </div>
       </div>
 
-      {/* Bottom Floating Booking Bar */}
+      {/* --- Desktop Booking Bar & Mobile Trigger --- */}
       <div className="absolute bottom-4 sm:bottom-10 left-0 right-0 w-full px-4 sm:px-6 lg:px-8 flex justify-center z-30">
-        <div className="bg-white rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] p-4 sm:p-6 w-full max-w-5xl flex flex-col md:flex-row items-center justify-between gap-6 border border-gray-100">
+        <div className="md:bg-white rounded-3xl md:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] p-4 sm:p-6 w-full max-w-5xl flex flex-col md:flex-row items-center justify-between gap-6 md:border border-gray-100">
 
-          <div className="flex flex-row justify-between w-full md:w-auto gap-6 md:gap-8 flex-wrap md:flex-nowrap">
-
+          {/* DESKTOP ONLY: Full Inputs Row */}
+          <div className="hidden md:flex flex-row justify-between w-full md:w-auto gap-6 md:gap-8 flex-wrap md:flex-nowrap">
+            
             {/* Check In */}
             <div className="flex items-center gap-3 w-35 group cursor-pointer">
               <Calendar className="text-gray-400 shrink-0 transition-colors group-hover:text-[#0f2c23]" size={24} strokeWidth={1.5} />
@@ -182,14 +185,13 @@ export default function Herobanner() {
                   selected={checkIn}
                   onChange={(date: Date | null) => {
                     setCheckIn(date);
-                    // Push checkout forward if user selects a checkin date after the current checkout
                     if (date && checkOut && date >= checkOut) {
                       const newOut = new Date(date);
                       newOut.setDate(newOut.getDate() + 1);
                       setCheckOut(newOut);
                     }
                   }}
-                  minDate={today} // STRICT: Disallow past dates entirely
+                  minDate={today}
                   dateFormat="dd MMM, yyyy"
                   customInput={<CustomDateInput />}
                   popperClassName="checkin-popper"
@@ -205,7 +207,7 @@ export default function Herobanner() {
                 <DatePicker
                   selected={checkOut}
                   onChange={(date: Date | null) => setCheckOut(date)}
-                  minDate={checkIn || today} // STRICT: Cannot checkout before checkin
+                  minDate={checkIn || today}
                   dateFormat="dd MMM, yyyy"
                   customInput={<CustomDateInput />}
                   popperClassName="checkout-popper"
@@ -238,15 +240,118 @@ export default function Herobanner() {
             />
           </div>
 
+          {/* DESKTOP ONLY: Check Availability Button */}
           <button
             onClick={handleCheckAvailability}
-            className="w-full md:w-auto bg-[#0f2c23] text-white px-8 py-4 rounded-2xl hover:bg-[#1a4034] transition-all duration-300 font-semibold text-sm whitespace-nowrap shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
+            className="hidden md:block w-full md:w-auto bg-[#0f2c23] text-white px-8 py-4 rounded-2xl hover:bg-[#1a4034] transition-all duration-300 font-semibold text-sm whitespace-nowrap shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
+          >
+            Check Availability
+          </button>
+
+          {/* MOBILE ONLY: Single Trigger Button */}
+          <button
+            onClick={() => setIsMobileModalOpen(true)}
+            className="md:hidden w-full bg-[#0f2c23] text-white px-8 py-4 rounded-2xl hover:bg-[#1a4034] transition-all duration-300 font-semibold text-sm whitespace-nowrap shadow-lg active:translate-y-0"
           >
             Check Availability
           </button>
 
         </div>
       </div>
+
+      {/* --- MOBILE MODAL OVERLAY --- */}
+      {isMobileModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/50 backdrop-blur-sm md:hidden animate-in fade-in duration-300">
+          <div className="bg-white w-full rounded-t-3xl p-6 pb-8 animate-in slide-in-from-bottom-full duration-300 shadow-2xl">
+            
+            {/* Header */}
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-bold text-[#0f2c23]">Your Stay</h2>
+              <button 
+                onClick={() => setIsMobileModalOpen(false)}
+                className="p-2 bg-gray-100 rounded-full text-gray-500 hover:text-gray-900 transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Mobile Inputs Layout */}
+            <div className="flex flex-col gap-6">
+              
+              <div className="flex justify-between items-center border-b border-gray-100 pb-4 group">
+                <div className="flex gap-4 items-center">
+                  <Calendar className="text-gray-400 group-focus-within:text-[#0f2c23]" size={24} strokeWidth={1.5} />
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-0.5">Check In</span>
+                    <DatePicker
+                      selected={checkIn}
+                      onChange={(date: Date | null) => {
+                        setCheckIn(date);
+                        if (date && checkOut && date >= checkOut) {
+                          const newOut = new Date(date);
+                          newOut.setDate(newOut.getDate() + 1);
+                          setCheckOut(newOut);
+                        }
+                      }}
+                      minDate={today}
+                      dateFormat="dd MMM, yyyy"
+                      customInput={<CustomDateInput />}
+                      withPortal // <--- Crucial for mobile viewing in React Datepicker
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center border-b border-gray-100 pb-4 group">
+                <div className="flex gap-4 items-center">
+                  <Calendar className="text-gray-400 group-focus-within:text-[#0f2c23]" size={24} strokeWidth={1.5} />
+                  <div className="flex flex-col">
+                    <span className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-0.5">Check Out</span>
+                    <DatePicker
+                      selected={checkOut}
+                      onChange={(date: Date | null) => setCheckOut(date)}
+                      minDate={checkIn || today}
+                      dateFormat="dd MMM, yyyy"
+                      customInput={<CustomDateInput />}
+                      withPortal // <--- Crucial for mobile viewing in React Datepicker
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center border-b border-gray-100 pb-4">
+                <CustomNumberInput
+                  label="Guests"
+                  value={guests}
+                  onChange={setGuests}
+                  onBlur={handleGuestsBlur}
+                  icon={<Users size={24} strokeWidth={1.5} />}
+                  suffix="Guest"
+                />
+              </div>
+
+              <div className="flex justify-between items-center pb-2">
+                <CustomNumberInput
+                  label="Rooms"
+                  value={rooms}
+                  onChange={setRooms}
+                  onBlur={handleRoomsBlur}
+                  icon={<DoorOpen size={24} strokeWidth={1.5} />}
+                  suffix="Room"
+                />
+              </div>
+
+              <button
+                onClick={handleCheckAvailability}
+                className="w-full bg-[#0f2c23] text-white px-8 py-4 rounded-2xl hover:bg-[#1a4034] transition-all duration-300 font-semibold text-base mt-2 shadow-lg active:scale-95"
+              >
+                Search Availability
+              </button>
+
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Global Overrides and native spin-button hiding */}
       <style dangerouslySetInnerHTML={{
@@ -263,7 +368,7 @@ export default function Herobanner() {
 
         /* React DatePicker Styles */
         .react-datepicker-popper {
-          z-index: 50 !important;
+          z-index: 110 !important; /* Boosted for the mobile modal */
         }
         .react-datepicker {
           font-family: inherit !important;
@@ -272,13 +377,12 @@ export default function Herobanner() {
           box-shadow: 0 20px 50px -12px rgba(0,0,0,0.15) !important;
           overflow: hidden;
         }
-                .checkin-popper {
-  margin-left: 25px!important;
-}
- 
-.checkout-popper {
-  margin-left: -32px !important;
-}
+        .checkin-popper {
+          margin-left: 25px!important;
+        }
+        .checkout-popper {
+          margin-left: -32px !important;
+        }
         .react-datepicker__header {
           background-color: #f8f5f0 !important;
           border-bottom: 1px solid #e5e7eb !important;
