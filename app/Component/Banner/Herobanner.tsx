@@ -110,7 +110,7 @@ export default function Herobanner() {
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8   pb-40 lg:pb-32 flex flex-col lg:flex-row justify-between items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  pb-40 lg:pb-32 flex flex-col lg:flex-row justify-between items-center">
 
         {/* Left Column: Text & CTAs */}
         <div className="w-full lg:w-1/2 flex flex-col items-start space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
@@ -130,7 +130,12 @@ export default function Herobanner() {
                 <ArrowRight size={14} />
               </div>
             </button>
-
+            <button className="w-full sm:w-auto flex items-center justify-center gap-3 text-[#0f2c23] hover:text-[#b89565] transition-colors px-6 py-4 group">
+              <div className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#0f2c23] group-hover:border-[#b89565] transition-colors">
+                <Play size={18} className="ml-1" fill="currentColor" />
+              </div>
+              <span className="font-semibold text-sm tracking-wide">Watch Video</span>
+            </button>
           </div>
         </div>
 
@@ -163,7 +168,7 @@ export default function Herobanner() {
       </div>
 
       {/* Bottom Floating Booking Bar */}
-      <div className="absolute bottom-2 sm:bottom-10 left-0 right-0 w-full px-4 sm:px-6 lg:px-8 flex justify-center z-30">
+      <div className="absolute bottom-4 sm:bottom-10 left-0 right-0 w-full px-4 sm:px-6 lg:px-8 flex justify-center z-30">
         <div className="bg-white rounded-3xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.2)] p-4 sm:p-6 w-full max-w-5xl flex flex-col md:flex-row items-center justify-between gap-6 border border-gray-100">
 
           <div className="flex flex-row justify-between w-full md:w-auto gap-6 md:gap-8 flex-wrap md:flex-nowrap">
@@ -174,7 +179,6 @@ export default function Herobanner() {
               <div className="flex flex-col">
                 <span className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-0.5 group-hover:text-gray-700 transition-colors">Check In</span>
                 <DatePicker
-                  className=' ms-6'
                   selected={checkIn}
                   onChange={(date: Date | null) => {
                     setCheckIn(date);
@@ -204,7 +208,7 @@ export default function Herobanner() {
                   minDate={checkIn || today} // STRICT: Cannot checkout before checkin
                   dateFormat="dd MMM, yyyy"
                   customInput={<CustomDateInput />}
-                   popperClassName="checkout-popper"
+                  popperClassName="checkout-popper"
                 />
               </div>
             </div>
@@ -261,7 +265,6 @@ export default function Herobanner() {
         .react-datepicker-popper {
           z-index: 50 !important;
         }
-        
         .react-datepicker {
           font-family: inherit !important;
           border: 1px solid #f3f4f6 !important;
@@ -269,12 +272,12 @@ export default function Herobanner() {
           box-shadow: 0 20px 50px -12px rgba(0,0,0,0.15) !important;
           overflow: hidden;
         }
-            .checkin-popper {
-  margin-left: 20px!important;
+                .checkin-popper {
+  margin-left: 25px!important;
 }
  
 .checkout-popper {
-  margin-left: -28px !important;
+  margin-left: -32px !important;
 }
         .react-datepicker__header {
           background-color: #f8f5f0 !important;
