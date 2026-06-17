@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Maximize2, Filter } from "lucide-react";
 
-export default function page() {
-  // 1. State Management
+export default function ResortGallery() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [lightbox, setLightbox] = useState({ isOpen: false, index: 0 });
 
-  // 2. Mock Data (Replace src with your actual image paths)
   const categories = ["All", "Rooms", "Dining", "Pool & Wellness", "Events"];
   
   const allImages = [
@@ -24,15 +22,13 @@ export default function page() {
     { id: 9, src: "https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80", category: "Rooms", alt: "Balcony View" },
   ];
 
-  // 3. Filter Logic
   const filteredImages = activeCategory === "All" 
     ? allImages 
     : allImages.filter(img => img.category === activeCategory);
 
-  // 4. Lightbox Handlers
   const openLightbox = (index: number) => {
     setLightbox({ isOpen: true, index });
-    document.body.style.overflow = "hidden"; // Prevent background scrolling
+    document.body.style.overflow = "hidden"; 
   };
 
   const closeLightbox = () => {
@@ -53,7 +49,6 @@ export default function page() {
     }));
   };
 
-  // Optional: Keyboard navigation for Lightbox
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!lightbox.isOpen) return;
@@ -66,64 +61,83 @@ export default function page() {
   }, [lightbox.isOpen, filteredImages.length]);
 
   return (
-    <div className="min-h-screen bg-[#FCFAF5] pt-28 pb-20 px-4 md:px-8">
+    <div className="min-h-screen bg-[#FCFAF5] pt-20 md:pt-28 pb-16 md:pb-20 px-4 md:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section */}
-        <div className="flex flex-col items-center text-center mb-12">
-          <span className="text-[#BE9447] font-semibold tracking-[0.2em] text-xs md:text-sm uppercase mb-4">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+          <span className="text-[#BE9447] font-semibold tracking-[0.2em] text-xs md:text-sm uppercase mb-3 md:mb-4">
             Visual Journey
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#0f2c23] leading-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-[#0f2c23] leading-tight mb-4 md:mb-6">
             Resort Gallery
           </h1>
-          <p className="text-gray-600 max-w-2xl mx-auto text-base">
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base px-2">
             Explore the breathtaking views, exquisite dining, and luxurious accommodations that await you at Sparsh Canopy Resort.
           </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border ${
-                activeCategory === category
-                  ? "bg-[#0f2c23] text-white border-[#0f2c23] shadow-md"
-                  : "bg-transparent text-gray-600 border-[#E8E2D2] hover:border-[#BE9447] hover:text-[#BE9447]"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        {/* --- MOBILE-PERFECT FILTER SECTION --- */}
+        <div className="flex flex-col items-center mb-10 md:mb-16 w-full">
+          <div className="flex items-center gap-2 mb-4 md:mb-6 text-[#8A8575]">
+            <Filter size={16} strokeWidth={2} className="md:w-[18px] md:h-[18px]" />
+            <span className="text-xs md:text-sm font-semibold tracking-[0.15em] uppercase">
+              Filter by Category
+            </span>
+          </div>
+          
+          {/* Scrollable container for mobile, wrapped for desktop */}
+          <div className="w-full max-w-3xl mx-auto relative">
+            {/* Added fade gradients for mobile scroll indication */}
+            <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#FCFAF5] to-transparent sm:hidden z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#FCFAF5] to-transparent sm:hidden z-10 pointer-events-none"></div>
+            
+            {/* 
+              Uses 'overflow-x-auto' and hides scrollbar. 
+              On sm screens and up, switches to 'flex-wrap' 
+            */}
+            <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 md:gap-3 p-1.5 md:p-2 bg-white/60 backdrop-blur-sm rounded-full sm:rounded-3xl border border-[#E8E2D2] shadow-sm [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`shrink-0 whitespace-nowrap px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
+                    activeCategory === category
+                      ? "bg-[#0f2c23] text-white shadow-md transform sm:scale-105"
+                      : "bg-transparent text-gray-600 hover:bg-[#E8E2D2]/50 hover:text-[#BE9447]"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
+        {/* ----------------------------- */}
 
         {/* Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {filteredImages.map((image, index) => (
             <div 
               key={image.id}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-square rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-500"
+              className="group relative aspect-[4/3] sm:aspect-square rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-500"
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               
-              {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                  <Maximize2 className="text-white w-5 h-5" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                  <Maximize2 className="text-white w-4 h-4 md:w-5 md:h-5" />
                 </div>
               </div>
 
-              {/* Tag */}
-              <div className="absolute bottom-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded text-xs font-semibold tracking-wider text-[#0f2c23] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 px-2.5 py-1 md:px-3 md:py-1 bg-white/90 backdrop-blur-sm rounded text-[10px] md:text-xs font-semibold tracking-wider text-[#0f2c23] uppercase opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 {image.category}
               </div>
             </div>
@@ -132,35 +146,35 @@ export default function page() {
 
       </div>
 
-      {/* --- Fullscreen Lightbox Modal --- */}
+      {/* --- RESPONSIVE FULLSCREEN LIGHTBOX --- */}
       {lightbox.isOpen && (
         <div 
-          className="fixed inset-0 z-100 bg-black/95 backdrop-blur-md flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center touch-none"
           onClick={closeLightbox}
         >
-          {/* Top Bar: Counter & Close */}
-          <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-50 text-white">
-            <span className="font-serif tracking-widest text-sm text-gray-300">
+          {/* Top Bar */}
+          <div className="absolute top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center z-50 text-white bg-gradient-to-b from-black/50 to-transparent">
+            <span className="font-serif tracking-widest text-xs md:text-sm text-gray-300">
               {lightbox.index + 1} / {filteredImages.length}
             </span>
             <button 
               onClick={closeLightbox}
-              className="p-2 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-colors"
+              className="p-2 md:p-2.5 bg-white/10 hover:bg-white/25 rounded-full backdrop-blur-sm transition-colors"
             >
-              <X size={24} />
+              <X className="w-5 h-5 md:w-6 md:h-6" />
             </button>
           </div>
 
-          {/* Previous Button */}
+          {/* Navigation Controls (Moved closer to edges on mobile) */}
           <button 
             onClick={prevImage}
-            className="absolute left-4 md:left-8 p-3 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm text-white transition-colors z-50"
+            className="absolute left-2 md:left-8 p-2 md:p-3 bg-black/20 hover:bg-white/20 rounded-full backdrop-blur-sm text-white transition-colors z-50"
           >
-            <ChevronLeft size={32} strokeWidth={1.5} />
+            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
           </button>
 
-          {/* Main Image */}
-          <div className="relative w-full h-full max-w-5xl max-h-[85vh] px-16 md:px-24">
+          {/* Main Image Container */}
+          <div className="relative w-full h-[70vh] md:h-full max-w-5xl md:max-h-[85vh] px-12 md:px-24">
             <Image
               src={filteredImages[lightbox.index].src}
               alt={filteredImages[lightbox.index].alt}
@@ -171,17 +185,16 @@ export default function page() {
             />
           </div>
 
-          {/* Next Button */}
           <button 
             onClick={nextImage}
-            className="absolute right-4 md:right-8 p-3 bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm text-white transition-colors z-50"
+            className="absolute right-2 md:right-8 p-2 md:p-3 bg-black/20 hover:bg-white/20 rounded-full backdrop-blur-sm text-white transition-colors z-50"
           >
-            <ChevronRight size={32} strokeWidth={1.5} />
+            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
           </button>
 
-          {/* Image Caption/Alt Text */}
-          <div className="absolute bottom-8 left-0 right-0 text-center z-50">
-            <p className="text-white font-serif text-lg md:text-xl tracking-wide drop-shadow-md">
+          {/* Image Caption */}
+          <div className="absolute bottom-8 md:bottom-10 left-0 right-0 text-center z-50 px-4">
+            <p className="text-white font-serif text-base md:text-xl tracking-wide drop-shadow-md">
               {filteredImages[lightbox.index].alt}
             </p>
           </div>
