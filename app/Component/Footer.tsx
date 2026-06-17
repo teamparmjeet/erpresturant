@@ -14,7 +14,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full bg-[#0f2c23] pt-20 md:pt-28 pb-8 px-4 md:px-8 border-t-[8px] border-[#BE9447]">
+    <footer className="w-full bg-[#0f2c23] pt-20 md:pt-28 pb-8 px-4 md:px-8 border-t-8 border-[#BE9447]">
       <div className="max-w-7xl mx-auto">
         
         {/* Main Footer Content */}
@@ -22,7 +22,7 @@ export default function Footer() {
           
           {/* Column 1: Brand Info */}
           <div className="flex flex-col space-y-6 lg:pr-8">
-            <Link href="/" className="relative w-24 h-24 sm:w-28 sm:h-28 grayscale brightness-200 contrast-100">
+            <Link href="/" className="relative w-24 h-24 sm:w-28 sm:h-28 ">
               <Image 
                 src="/image/logo.png" 
                 alt="Sparsh Canopy Resort Logo" 
@@ -45,7 +45,7 @@ export default function Footer() {
                     href={link.href}
                     className="text-gray-400 text-sm hover:text-[#BE9447] transition-colors duration-300 flex items-center gap-2 group"
                   >
-                    <span className="w-0 h-[1px] bg-[#BE9447] transition-all duration-300 group-hover:w-3"></span>
+                    <span className="w-0 h-px bg-[#BE9447] transition-all duration-300 group-hover:w-3"></span>
                     {link.name}
                   </Link>
                 </li>
@@ -102,7 +102,7 @@ export default function Footer() {
           <p className="text-gray-500 text-xs text-center md:text-left">
             © {new Date().getFullYear()} Sparsh Canopy Resort. All rights reserved.
           </p>
-          
+{/*           
           <div className="flex gap-6">
             <Link href="#" className="text-gray-400 hover:text-[#BE9447] transition-colors" aria-label="Facebook">
               <MapPin size={20} strokeWidth={1.5} />
@@ -113,7 +113,7 @@ export default function Footer() {
             <Link href="#" className="text-gray-400 hover:text-[#BE9447] transition-colors" aria-label="Twitter">
               <MapPin size={20} strokeWidth={1.5} />
             </Link>
-          </div>
+          </div> */}
 
           <div className="flex gap-6 text-xs text-gray-500">
             <Link href="/privacy" className="hover:text-[#BE9447] transition-colors">Privacy Policy</Link>
