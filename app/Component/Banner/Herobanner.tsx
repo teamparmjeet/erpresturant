@@ -108,7 +108,7 @@ export default function Herobanner() {
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')" }}
       >
-        <div className="absolute inset-0 bg-linear-to-r from-white/85 via-white/10 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-white/60 via-white/60 to-white/60"></div>
       </div>
 
       {/* Main Content Container */}
