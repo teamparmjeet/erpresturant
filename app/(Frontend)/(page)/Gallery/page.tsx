@@ -80,7 +80,7 @@ export default function ResortGallery() {
         {/* --- MOBILE-PERFECT FILTER SECTION --- */}
         <div className="flex flex-col items-center mb-10 md:mb-16 w-full">
           <div className="flex items-center gap-2 mb-4 md:mb-6 text-[#8A8575]">
-            <Filter size={16} strokeWidth={2} className="md:w-[18px] md:h-[18px]" />
+            <Filter size={16} strokeWidth={2} className="md:w-4.5 md:h-4.5" />
             <span className="text-xs md:text-sm font-semibold tracking-[0.15em] uppercase">
               Filter by Category
             </span>
@@ -89,14 +89,14 @@ export default function ResortGallery() {
           {/* Scrollable container for mobile, wrapped for desktop */}
           <div className="w-full max-w-3xl mx-auto relative">
             {/* Added fade gradients for mobile scroll indication */}
-            <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[#FCFAF5] to-transparent sm:hidden z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[#FCFAF5] to-transparent sm:hidden z-10 pointer-events-none"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-4 bg-linear-to-r from-[#FCFAF5] to-transparent sm:hidden z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-4 bg-linear-to-l from-[#FCFAF5] to-transparent sm:hidden z-10 pointer-events-none"></div>
             
             {/* 
               Uses 'overflow-x-auto' and hides scrollbar. 
               On sm screens and up, switches to 'flex-wrap' 
             */}
-            <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 md:gap-3 p-1.5 md:p-2 bg-white/60 backdrop-blur-sm rounded-full sm:rounded-3xl border border-[#E8E2D2] shadow-sm [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 md:gap-3 p-1.5 md:p-2 bg-white/60 backdrop-blur-sm rounded-full sm:rounded-3xl border border-[#E8E2D2] shadow-sm [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none">
               {categories.map((category) => (
                 <button
                   key={category}
@@ -121,7 +121,7 @@ export default function ResortGallery() {
             <div 
               key={image.id}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-[4/3] sm:aspect-square rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-500"
+              className="group relative aspect-4/3 sm:aspect-square rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-500"
             >
               <Image
                 src={image.src}
@@ -149,11 +149,11 @@ export default function ResortGallery() {
       {/* --- RESPONSIVE FULLSCREEN LIGHTBOX --- */}
       {lightbox.isOpen && (
         <div 
-          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center touch-none"
+          className="fixed inset-0 z-100 bg-black/95 backdrop-blur-md flex items-center justify-center touch-none"
           onClick={closeLightbox}
         >
           {/* Top Bar */}
-          <div className="absolute top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center z-50 text-white bg-gradient-to-b from-black/50 to-transparent">
+          <div className="absolute top-0 left-0 right-0 p-4 md:p-6 flex justify-between items-center z-50 text-white bg-linear-to-b from-black/50 to-transparent">
             <span className="font-serif tracking-widest text-xs md:text-sm text-gray-300">
               {lightbox.index + 1} / {filteredImages.length}
             </span>

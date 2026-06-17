@@ -15,7 +15,7 @@ import {
   Users,
   DoorOpen
 } from 'lucide-react';
-
+import Link from 'next/link';
 // --- Custom Number Input Component ---
 // Handles typing numbers and enforces minimums automatically on blur
 interface NumberInputProps {
@@ -124,12 +124,12 @@ export default function Herobanner() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 w-full sm:w-auto">
-            <button className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0f2c23] text-white px-8 py-4 rounded-full hover:bg-[#1a4034] transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 group">
+            <Link href="/Rooms" className="w-full sm:w-auto flex items-center justify-center gap-3 bg-[#0f2c23] text-white px-8 py-4 rounded-full hover:bg-[#1a4034] transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 group">
               <span className="font-semibold text-sm tracking-wide">Explore Rooms</span>
               <div className="border border-white/30 rounded-full p-1 group-hover:bg-white/10 transition-colors">
                 <ArrowRight size={14} />
               </div>
-            </button>
+            </Link>
             <button className="w-full sm:w-auto flex items-center justify-center gap-3 text-[#0f2c23] hover:text-[#b89565] transition-colors px-6 py-4 group">
               <div className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-[#0f2c23] group-hover:border-[#b89565] transition-colors">
                 <Play size={18} className="ml-1" fill="currentColor" />

@@ -13,11 +13,11 @@ export default function Header() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Rooms", href: "/Rooms" },
-    { name: "Dining", href: "/dining" },
-    { name: "Experiences", href: "/experiences" },
+    // { name: "Dining", href: "/dining" },
+    // { name: "Experiences", href: "/experiences" },
     { name: "Gallery", href: "/Gallery" },
-    { name: "Offers", href: "/offers" },
-    { name: "Contact", href: "/contact" },
+    // { name: "Offers", href: "/offers" },
+    // { name: "Contact", href: "/contact" },
   ];
 
   // Prevent background scrolling when mobile menu is open

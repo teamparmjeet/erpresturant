@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Filter, X, Maximize, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function page() {
   // --- STATE MANAGEMENT ---
@@ -19,6 +20,7 @@ export default function page() {
     {
       id: 1,
       name: "Premium Garden Room",
+      slug: "Premium_Garden_Room",
       image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
       size: "350 Sqft",
       capacity: "2-3 Adults seating",
@@ -29,6 +31,7 @@ export default function page() {
     {
       id: 2,
       name: "Luxury Pool Villa",
+      slug: "Luxury_Pool_Villa",
       image: "https://images.unsplash.com/photo-1582719478250-c89404bb8a0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
       size: "450 Sqft",
       capacity: "2-3 Adults seating",
@@ -39,6 +42,7 @@ export default function page() {
     {
       id: 3,
       name: "Canopy Suite",
+      slug: "Canopy_Suite",
       image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
       size: "650 Sqft",
       capacity: "4-5 Adults seating",
@@ -49,6 +53,7 @@ export default function page() {
     {
       id: 4,
       name: "Royal Villa",
+      slug: "Royal_Villa",
       image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80",
       size: "850 Sqft",
       capacity: "4-6 Adults seating",
@@ -282,9 +287,9 @@ export default function page() {
                         </span>
                         <span className="text-sm text-gray-500 font-medium ml-1">/ night</span>
                       </div>
-                      <button className="px-8 py-2.5 border border-[#E8E2D2] text-[#0f2c23] text-xs font-bold tracking-[0.15em] uppercase hover:bg-[#0f2c23] hover:text-white hover:border-[#0f2c23] transition-all duration-300 rounded">
+                      <Link href={`/Rooms/${room.slug}`} className="px-8 py-2.5 border border-[#E8E2D2] text-[#0f2c23] text-xs font-bold tracking-[0.15em] uppercase hover:bg-[#0f2c23] hover:text-white hover:border-[#0f2c23] transition-all duration-300 rounded">
                         View Details
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

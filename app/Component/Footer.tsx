@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import {   MapPin, Phone, Mail, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight } from "lucide-react";
 
 export default function Footer() {
   const quickLinks = [
@@ -16,16 +16,16 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#0f2c23] pt-20 md:pt-28 pb-8 px-4 md:px-8 border-t-8 border-[#BE9447]">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-          
+
           {/* Column 1: Brand Info */}
           <div className="flex flex-col space-y-6 lg:pr-8">
             <Link href="/" className="relative w-24 h-24 sm:w-28 sm:h-28 ">
-              <Image 
-                src="/image/logo.png" 
-                alt="Sparsh Canopy Resort Logo" 
+              <Image
+                src="/image/logo.png"
+                alt="Sparsh Canopy Resort Logo"
                 fill
                 className="object-contain"
               />
@@ -41,7 +41,7 @@ export default function Footer() {
             <ul className="flex flex-col space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-gray-400 text-sm hover:text-[#BE9447] transition-colors duration-300 flex items-center gap-2 group"
                   >
@@ -79,13 +79,13 @@ export default function Footer() {
               Subscribe to receive exclusive offers and updates on our latest experiences.
             </p>
             <form className="relative mt-2" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Your email address" 
+              <input
+                type="email"
+                placeholder="Your email address"
                 className="w-full bg-[#1a4034] text-white placeholder-gray-500 text-sm px-4 py-3.5 rounded outline-none focus:ring-1 focus:ring-[#BE9447] transition-all border border-transparent focus:border-[#BE9447]"
                 required
               />
-              <button 
+              <button
                 type="submit"
                 className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-[#BE9447] text-white rounded hover:bg-[#a67c33] transition-colors"
                 aria-label="Subscribe"
@@ -102,7 +102,7 @@ export default function Footer() {
           <p className="text-gray-500 text-xs text-center md:text-left">
             © {new Date().getFullYear()} Sparsh Canopy Resort. All rights reserved.
           </p>
-{/*           
+          {/*           
           <div className="flex gap-6">
             <Link href="#" className="text-gray-400 hover:text-[#BE9447] transition-colors" aria-label="Facebook">
               <MapPin size={20} strokeWidth={1.5} />

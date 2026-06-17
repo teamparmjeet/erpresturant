@@ -97,7 +97,7 @@ export default function FacilitiesSection() {
             </div>
 
             <Link
-              href="/rooms"
+              href="/Rooms"
               className="group inline-flex items-center gap-3 px-8 py-3.5 bg-[#0f2c23] text-white text-sm font-medium rounded hover:bg-[#1a4034] transition-all duration-300 shadow-md w-fit mt-2"
             >
               Explore Rooms

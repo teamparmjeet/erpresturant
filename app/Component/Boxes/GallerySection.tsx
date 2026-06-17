@@ -84,7 +84,7 @@ export default function GallerySection() {
       {/* Floating CTA Button */}
       <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-10">
         <Link
-          href="/gallery"
+          href="/Gallery"
           className="px-8 py-3.5 bg-[#FCFAF5] text-[#BE9447] text-xs font-bold tracking-[0.2em] uppercase rounded shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-[#f4efe3] transition-colors duration-300 border border-[#E8E2D2]"
         >
           View Gallery
