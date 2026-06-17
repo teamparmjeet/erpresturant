@@ -261,7 +261,7 @@ export default function Herobanner() {
 
       {/* --- MOBILE MODAL OVERLAY --- */}
       {isMobileModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-black/50 backdrop-blur-sm md:hidden animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-100 flex items-end justify-center bg-black/50 backdrop-blur-sm md:hidden animate-in fade-in duration-300">
           <div className="bg-white w-full rounded-t-3xl p-6 pb-8 animate-in slide-in-from-bottom-full duration-300 shadow-2xl">
             
             {/* Header */}

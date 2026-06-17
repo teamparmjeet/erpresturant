@@ -62,7 +62,7 @@ export default function Discover() {
               return (
                 <div key={index} className="flex  flex-col items-center text-center group cursor-pointer">
                   {/* Icon Circle */}
-                  <div className="w-20 h-20 mb-4 rounded-full bg-white border border-[#E8E2D2] flex items-center justify-center text-[#0f2c23] shadow-sm group-hover:bg-white group-hover:shadow-md transition-all duration-300">
+                  <div className="w-20 h-20 mb-4 rounded-full bg-[#b89565] border border-[#E8E2D2] flex items-center justify-center text-white shadow-sm group-hover:text-[#b89565] group-hover:bg-white group-hover:shadow-md transition-all duration-300">
                     <Icon size={28} strokeWidth={1} />
                   </div>
                   {/* Label */}
