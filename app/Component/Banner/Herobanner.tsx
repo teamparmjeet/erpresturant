@@ -99,7 +99,7 @@ export default function Herobanner() {
   };
 
   return (
-    <div className="relative w-full min-h-screen rounded-4xl overflow-hidden flex flex-col justify-center bg-gray-100 font-sans selection:bg-[#b89565] selection:text-white">
+    <div className="relative w-full min-h-162.5 rounded-4xl overflow-hidden flex flex-col justify-center bg-gray-100 font-sans selection:bg-[#b89565] selection:text-white">
 
       {/* Background Image Setup */}
       <div
