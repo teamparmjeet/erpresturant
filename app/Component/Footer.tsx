@@ -25,13 +25,13 @@ export default function Footer() {
             <Link href="/" className="relative w-24 h-24 sm:w-28 sm:h-28 ">
               <Image
                 src="/image/logo.png"
-                alt="Sparsh Canopy Resort Logo"
+                alt="Parm Canopy Resort Logo"
                 fill
                 className="object-contain"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Experience the perfect harmony of luxury and nature. Sparsh Canopy Resort offers an unforgettable escape into serenity, complete with world-class amenities and pristine surroundings.
+              Experience the perfect harmony of luxury and nature. Parm Canopy Resort offers an unforgettable escape into serenity, complete with world-class amenities and pristine surroundings.
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm">
                 <Mail size={18} className="text-[#BE9447] shrink-0" strokeWidth={1.5} />
-                <span>reservations@sparshresort.com</span>
+                <span>reservations@Parmresort.com</span>
               </li>
             </ul>
           </div>
@@ -100,7 +100,7 @@ export default function Footer() {
         {/* Bottom Bar: Copyright & Socials */}
         <div className="pt-8 border-t border-[#1a4034] flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs text-center md:text-left">
-            © {new Date().getFullYear()} Sparsh Canopy Resort. All rights reserved.
+            © {new Date().getFullYear()} Parm Canopy Resort. All rights reserved.
           </p>
           {/*           
           <div className="flex gap-6">
