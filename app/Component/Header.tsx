@@ -147,16 +147,7 @@ export default function Header() {
         </div>
 
         {/* Drawer Footer (Mobile CTA) */}
-        <div className="p-6 border-t border-gray-200 sm:hidden bg-white">
-          <Link
-            href="/book"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="flex items-center justify-center gap-2 w-full px-6 py-3.5 bg-[#0f2c23] text-white text-base font-medium rounded-lg shadow-md hover:bg-[#1a4034] transition-colors"
-          >
-            <CalendarDays size={18} strokeWidth={1.5} />
-            Book Now
-          </Link>
-        </div>
+
       </div>
     </header>
   );
