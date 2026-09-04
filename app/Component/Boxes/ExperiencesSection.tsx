@@ -27,13 +27,7 @@ export default function ExperiencesSection() {
           <p className="text-gray-600 leading-relaxed text-base">
             From sunrise dips to starry night parties – every moment is crafted for memories.
           </p>
-          <Link
-            href="/experiences"
-            className="group inline-flex items-center gap-3 px-6 py-4 bg-[#0f2c23] text-white rounded-full w-fit hover:bg-[#1a4034] transition-all duration-300"
-          >
-            Explore Experiences
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
+         
         </div>
 
         {/* Right: Experience Cards */}
