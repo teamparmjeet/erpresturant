@@ -62,18 +62,7 @@ export default function DiningSection() {
                     </p>
 
                     {/* CTA Button */}
-                    <div className="pt-4">
-                        <Link
-                            href="/dining"
-                            className="group inline-flex items-center gap-4 px-6 py-3 bg-[#0f2c23] text-white rounded-full w-fit hover:bg-[#1a4034] transition-all duration-300 shadow-md"
-                        >
-                            <span className="text-sm font-medium">Explore Dining</span>
-                            {/* Arrow in Circle */}
-                            <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center group-hover:border-white transition-colors duration-300">
-                                <ArrowRight size={16} strokeWidth={1.5} />
-                            </div>
-                        </Link>
-                    </div>
+               
 
                 </div>
             </div>
