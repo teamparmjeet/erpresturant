@@ -118,7 +118,7 @@ export default function Herobanner() {
         <div className="w-full lg:w-1/2 flex flex-col items-start space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <p className="text-[#b89565] font-semibold tracking-widest text-sm sm:text-base uppercase">Escape. Relax.</p>
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-serif font-bold text-[#0f2c23] leading-tight">
-            EXPERIENCE<br />SPARSH
+            EXPERIENCE<br />PARM
           </h1>
           <div className="w-16 h-1 bg-[#b89565] my-2 rounded-full"></div>
           <p className="text-gray-800 text-base sm:text-lg max-w-md font-medium leading-relaxed">
