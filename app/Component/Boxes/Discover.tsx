@@ -28,12 +28,7 @@ export default function Discover() {
             <p className="text-gray-600 leading-relaxed text-sm md:text-base max-w-lg">
               Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
-            <Link
-              href="/discover"
-              className="mt-4 px-8 py-3.5 bg-[#0f2c23] text-white text-xs font-semibold tracking-widest uppercase rounded hover:bg-[#1a4034] transition-colors duration-300 shadow-md"
-            >
-              Discover More
-            </Link>
+           
           </div>
 
           {/* Right Column: Image with stylized borders */}
