@@ -69,16 +69,9 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right Actions (CTA + Hamburger) */}
+        { 
         <div className="flex items-center gap-4 relative z-10">
-          {/* Desktop Book Now Button */}
-          <Link
-            href="/book"
-            className="hidden sm:flex items-center justify-center gap-2 px-6 py-2.5 text-sm font-medium text-white bg-[#0f2c23] rounded-lg hover:bg-[#1a4034] transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            <CalendarDays size={16} strokeWidth={1.5} />
-            <span>Book Now</span>
-          </Link>
+          
 
           {/* Hamburger Menu Toggle (Mobile & Tablet) */}
           <button
