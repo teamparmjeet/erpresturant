@@ -22,7 +22,7 @@ export default function Discover() {
           {/* Left Column: Content */}
           <div className="flex flex-col items-start space-y-6">
             <h2 className="text-4xl md:text-5xl font-serif text-[#0f2c23] leading-tight">
-              Discover Sparsh<br />
+              Discover PARM<br />
               Canopy Resort
             </h2>
             <p className="text-gray-600 leading-relaxed text-sm md:text-base max-w-lg">
@@ -40,7 +40,7 @@ export default function Discover() {
             <div className="relative  w-full h-full overflow-hidden rounded-tl-[80px] rounded-tr-xl rounded-br-xl rounded-bl-xl shadow-lg">
               <Image
                 src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" // Replace with your actual image path
-                alt="Sparsh Canopy Resort Pool at Dusk"
+                alt="PARM Canopy Resort Pool at Dusk"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
